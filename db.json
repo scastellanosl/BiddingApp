@@ -1,0 +1,250 @@
+{
+  "auctions": [
+    {
+      "id": "auction_001",
+      "name": "",
+      "description": "Jarrón de porcelana azul y blanca del siglo XV. En perfecto estado de conservación. Ideal para coleccionistas. Incluye certificado de autenticidad.",
+      "max_offer": 300000,
+      "inscriptions": 47,
+      "end_date": "",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Chinese_vase.jpg",
+      "min_bid": 100000,
+      "is_active": true,
+      "winner_id": null,
+      "winning_bid": null
+    },
+    {
+      "id": "auction_002",
+      "name": "Colección de Monedas Romanas",
+      "description": "Conjunto de 10 monedas de plata de la época Imperial Romana, bien conservadas. Varias denominaciones y emperadores.",
+      "max_offer": 8000,
+      "inscriptions": 12,
+      "end_date": "2025-11-15T18:00:00Z",
+      "image_url": "https://placehold.co/600x400/33FF57/white?text=Coins",
+      "min_bid": 5000,
+      "is_active": true,
+      "winner_id": null,
+      "winning_bid": null
+    },
+    {
+      "id": "auction_003",
+      "name": "Guitarra Gibson Les Paul (1970)",
+      "description": "Clásica guitarra eléctrica con desgaste auténtico. Ideal para músicos y coleccionistas. Incluye estuche original.",
+      "max_offer": 25000,
+      "inscriptions": 30,
+      "end_date": "2025-10-20T10:00:00Z",
+      "image_url": "https://placehold.co/600x400/3366FF/white?text=Guitar",
+      "min_bid": 20000,
+      "is_active": false,
+      "winner_id": "user_xyz",
+      "winning_bid": 26500
+    },
+    {
+      "id": "auction_004",
+      "name": "",
+      "description": "Reloj de bolsillo de plata de finales del siglo XIX. Funcionando y en buen estado.",
+      "max_offer": 2000,
+      "inscriptions": 1,
+      "end_date": "",
+      "image_url": "https://placehold.co/600x400/FFD700/white?text=Watch",
+      "min_bid": 500,
+      "is_active": false,
+      "winner_id": "juan",
+      "winning_bid": 2000
+    },
+    {
+      "id": "e787",
+      "description": "Subasta de prueba",
+      "end_date": "",
+      "image_url": "https://static.wikia.nocookie.net/lossimpson/images/2/28/THomer2.jpg/revision/latest?cb=20090330180213&path-prefix=es",
+      "inscriptions": 1,
+      "is_active": false,
+      "max_offer": 200000,
+      "min_bid": 1,
+      "name": "",
+      "winner_id": "user_id_actual",
+      "winning_bid": 200000
+    },
+    {
+      "id": "7091",
+      "description": "Subasta de Zapatos",
+      "end_date": "",
+      "inscriptions": 3,
+      "is_active": true,
+      "max_offer": 35000,
+      "min_bid": 10,
+      "name": ""
+    },
+    {
+      "id": "9c87",
+      "description": "Subasta de prueba2",
+      "end_date": "",
+      "inscriptions": 3,
+      "is_active": true,
+      "max_offer": 200,
+      "min_bid": 1,
+      "name": ""
+    },
+    {
+      "id": "c7e7",
+      "description": "Subasta de Hola",
+      "end_date": "",
+      "image_url": "https://images.stockx.com/images/Crocs-Classic-Clog-Bone-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&q=60&dpr=1&trim=color&updated_at=1738193358",
+      "inscriptions": 1,
+      "is_active": true,
+      "max_offer": 2,
+      "min_bid": 1,
+      "name": ""
+    }
+  ],
+  "bids": [
+    {
+      "id": "bid_001",
+      "auction_id": "auction_001",
+      "amount": 120000,
+      "user_id": "user_abc",
+      "timestamp": "2025-12-25T10:00:00Z"
+    },
+    {
+      "id": "bid_002",
+      "auction_id": "auction_001",
+      "amount": 135000,
+      "user_id": "user_def",
+      "timestamp": "2025-12-25T10:05:00Z"
+    },
+    {
+      "id": "bid_003",
+      "auction_id": "auction_001",
+      "amount": 150000,
+      "user_id": "user_ghi",
+      "timestamp": "2025-12-25T10:10:00Z"
+    },
+    {
+      "id": "bid_004",
+      "auction_id": "auction_003",
+      "amount": 26500,
+      "user_id": "user_xyz",
+      "timestamp": "2025-10-19T23:55:00Z"
+    },
+    {
+      "id": "2d50",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "479d",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "615a",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "7c11",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "e2b4",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "9a8c",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "c048",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "a973",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "b846",
+      "amount": 200000,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "31eb",
+      "amount": 100,
+      "auction_id": "auction_001",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "5a3e",
+      "amount": 200000,
+      "auction_id": "e787",
+      "user_id": "user_id_actual"
+    },
+    {
+      "id": "25a8",
+      "amount": 2000,
+      "auction_id": "auction_004",
+      "user_id": "juan"
+    },
+    {
+      "id": "1f19",
+      "amount": 20000,
+      "auction_id": "7091",
+      "user_id": "Juan"
+    },
+    {
+      "id": "886a",
+      "amount": 30000,
+      "auction_id": "7091",
+      "user_id": "pedro"
+    },
+    {
+      "id": "7108",
+      "amount": 35000,
+      "auction_id": "7091",
+      "user_id": "juan"
+    },
+    {
+      "id": "fd4e",
+      "amount": 200,
+      "auction_id": "9c87",
+      "user_id": "Pedro "
+    },
+    {
+      "id": "3d1a",
+      "amount": 100,
+      "auction_id": "9c87",
+      "user_id": "pablo"
+    },
+    {
+      "id": "31eb",
+      "amount": 20,
+      "auction_id": "9c87",
+      "user_id": "alex"
+    },
+    {
+      "id": "4623",
+      "amount": 300000,
+      "auction_id": "auction_001",
+      "user_id": "Pedro"
+    },
+    {
+      "id": "091a",
+      "amount": 2,
+      "auction_id": "c7e7",
+      "user_id": "Juan"
+    }
+  ]
+}
