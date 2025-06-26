@@ -1,19 +1,6 @@
 {
   "auctions": [
     {
-      "id": "auction_001",
-      "name": "",
-      "description": "Jarrón de porcelana azul y blanca del siglo XV. En perfecto estado de conservación. Ideal para coleccionistas. Incluye certificado de autenticidad.",
-      "max_offer": 300000,
-      "inscriptions": 47,
-      "end_date": "",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Chinese_vase.jpg",
-      "min_bid": 100000,
-      "is_active": true,
-      "winner_id": null,
-      "winning_bid": null
-    },
-    {
       "id": "auction_002",
       "name": "Colección de Monedas Romanas",
       "description": "Conjunto de 10 monedas de plata de la época Imperial Romana, bien conservadas. Varias denominaciones y emperadores.",
@@ -40,61 +27,15 @@
       "winning_bid": 26500
     },
     {
-      "id": "auction_004",
-      "name": "",
-      "description": "Reloj de bolsillo de plata de finales del siglo XIX. Funcionando y en buen estado.",
-      "max_offer": 2000,
-      "inscriptions": 1,
-      "end_date": "",
-      "image_url": "https://placehold.co/600x400/FFD700/white?text=Watch",
-      "min_bid": 500,
-      "is_active": false,
-      "winner_id": "juan",
-      "winning_bid": 2000
-    },
-    {
-      "id": "e787",
-      "description": "Subasta de prueba",
-      "end_date": "",
-      "image_url": "https://static.wikia.nocookie.net/lossimpson/images/2/28/THomer2.jpg/revision/latest?cb=20090330180213&path-prefix=es",
-      "inscriptions": 1,
-      "is_active": false,
-      "max_offer": 200000,
-      "min_bid": 1,
-      "name": "",
-      "winner_id": "user_id_actual",
-      "winning_bid": 200000
-    },
-    {
-      "id": "7091",
-      "description": "Subasta de Zapatos",
-      "end_date": "",
-      "inscriptions": 3,
-      "is_active": true,
-      "max_offer": 35000,
-      "min_bid": 10,
-      "name": ""
-    },
-    {
-      "id": "9c87",
-      "description": "Subasta de prueba2",
-      "end_date": "",
-      "inscriptions": 3,
-      "is_active": true,
-      "max_offer": 200,
-      "min_bid": 1,
-      "name": ""
-    },
-    {
-      "id": "c7e7",
-      "description": "Subasta de Hola",
-      "end_date": "",
-      "image_url": "https://images.stockx.com/images/Crocs-Classic-Clog-Bone-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&q=60&dpr=1&trim=color&updated_at=1738193358",
+      "id": "49ce",
+      "description": "Subasta de Holaaaa",
+      "end_date": "2025-06-26",
+      "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fnupec.com%2Fblog-nupec%2Frazones-para-tener-un-gato-en-casa%2F&psig=AOvVaw0XjXKjcLYiEaiCuUzncjaK&ust=1751026309301000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDs0buHj44DFQAAAAAdAAAAABAE",
       "inscriptions": 1,
       "is_active": true,
       "max_offer": 2,
       "min_bid": 1,
-      "name": ""
+      "name": "Holaaaa"
     }
   ],
   "bids": [
@@ -245,6 +186,12 @@
       "amount": 2,
       "auction_id": "c7e7",
       "user_id": "Juan"
+    },
+    {
+      "id": "47b4",
+      "amount": 2,
+      "auction_id": "49ce",
+      "user_id": "Jorge"
     }
   ]
 }

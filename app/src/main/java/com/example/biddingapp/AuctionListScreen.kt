@@ -184,10 +184,10 @@ fun AuctionItem(auction: Auction, onClick: (Auction) -> Unit) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(auction.name, color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(2f))
+        auction.name?.let { Text(it, color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(2f)) }
         Text("$${auction.maxOffer}", color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(1.5f))
         Text(auction.inscriptions.toString(), color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(1f))
-        Text(auction.endDate, color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(1.5f))
+        auction.endDate?.let { Text(it, color = Color(0xFF333333), fontSize = 16.sp, modifier = Modifier.weight(1.5f)) }
     }
 }
 

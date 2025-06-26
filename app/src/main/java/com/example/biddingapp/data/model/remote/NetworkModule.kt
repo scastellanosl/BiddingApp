@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  */
 object NetworkModule {
 
-    private const val BASE_URL = "http://192.168.1.2:3000/" // ¡¡IMPORTANTE!! Reemplaza con la URL de tu API real
+    private const val BASE_URL = "http://192.168.122.1:3000/" // ¡¡IMPORTANTE!! Reemplaza con la URL de tu API real
 
     // Configuración del interceptor de logging para ver las solicitudes y respuestas en Logcat.
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

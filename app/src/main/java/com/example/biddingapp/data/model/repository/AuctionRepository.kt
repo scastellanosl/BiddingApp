@@ -129,15 +129,36 @@ class AuctionRepository(private val apiService: ApiService) {
      */
     suspend fun updateBidAmount(bidId: String, newAmount: Double): Boolean {
         return try {
-            val bidUpdate = BidUpdate(amount = newAmount) // <-- ¡Cambiado a BidUpdate!
-            println("DEBUG AuctionRepository: Sending PATCH to bids/$bidId with body: $bidUpdate") // <-- DEBUG
-            val response = apiService.updateExistingBid(bidId, bidUpdate) // <-- ¡Cambiado a BidUpdate!
+            val bidUpdate = BidUpdate(amount = newAmount)
+            println("DEBUG AuctionRepository: Sending PATCH to bids/$bidId with body: $bidUpdate")
+            val response = apiService.updateExistingBid(bidId, bidUpdate)
             if (!response.isSuccessful) {
                 println("DEBUG AuctionRepository: Error updating bid $bidId. Code: ${response.code()}, Body: ${response.errorBody()?.string()}")
             }
             response.isSuccessful
         } catch (e: Exception) {
             println("DEBUG AuctionRepository: Excepción al actualizar puja $bidId: ${e.message}")
+            false
+        }
+    }
+
+    /**
+     * Elimina una subasta por su ID.
+     * @param auctionId El ID de la subasta a eliminar.
+     * @return true si la eliminación fue exitosa (respuesta 2xx), false en caso contrario.
+     */
+    suspend fun deleteAuction(auctionId: String): Boolean {
+        return try {
+            println("DEBUG AuctionRepository: Attempting to delete auction with ID: $auctionId")
+            val response = apiService.deleteAuction(auctionId)
+            if (response.isSuccessful) {
+                println("DEBUG AuctionRepository: Auction $auctionId deleted successfully.")
+            } else {
+                println("DEBUG AuctionRepository: Failed to delete auction $auctionId. Code: ${response.code()}, Error: ${response.errorBody()?.string()}")
+            }
+            response.isSuccessful
+        } catch (e: Exception) {
+            println("DEBUG AuctionRepository: Exception while deleting auction $auctionId: ${e.message}")
             false
         }
     }

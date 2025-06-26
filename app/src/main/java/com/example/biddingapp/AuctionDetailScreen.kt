@@ -15,10 +15,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState // Importar para el scroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll // Importar para el scroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -53,9 +53,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.example.biddingapp.R // Asegúrate de tener este import para R.drawable
 import com.example.biddingapp.data.model.model.Bid
 import com.example.biddingapp.ui.theme.BiddingAppTheme
-import com.example.biddingapp.ui.viewmodel.AuctionDetailViewModel // Asegúrate de que esta importación sea correcta
+import com.example.biddingapp.viewmodel.AuctionDetailViewModel // Asegúrate de usar el ViewModel correcto
 
 // Pantalla de detalle de una subasta
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,17 +67,30 @@ fun AuctionDetailScreen(
     viewModel: AuctionDetailViewModel = viewModel()
 ) {
     val auctionDetail by viewModel.auctionDetail.collectAsStateWithLifecycle()
-    val bidsForAuction by viewModel.bidsForAuction.collectAsStateWithLifecycle() // <-- Nuevo estado para las pujas
+    val bidsForAuction by viewModel.bidsForAuction.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
     val successMessage by viewModel.successMessage.collectAsStateWithLifecycle()
+    val isAuctionDeleted by viewModel.isAuctionDeleted.collectAsStateWithLifecycle() // Observar el estado de eliminación
 
     var bidAmount by remember { mutableStateOf("") }
     var userNameInput by remember { mutableStateOf("") }
 
+    val scrollState = rememberScrollState()
+
     LaunchedEffect(auctionId) {
         viewModel.fetchAuctionDetail(auctionId)
     }
+
+    // *** Nuevo LaunchedEffect para manejar la eliminación exitosa y la navegación ***
+    LaunchedEffect(isAuctionDeleted) {
+        if (isAuctionDeleted) {
+            // Un pequeño retardo opcional para que el mensaje de éxito sea visible
+            kotlinx.coroutines.delay(500) // 0.5 segundos
+            onBack() // Llama a la función de navegación para volver a la pantalla anterior
+        }
+    }
+
 
     Scaffold(
         topBar = {
@@ -127,8 +141,9 @@ fun AuctionDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(24.dp)
-                    .background(Color(0xFFF8F8F8)),
+                    .padding(horizontal = 24.dp)
+                    .background(Color(0xFFF8F8F8))
+                    .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 successMessage?.let {
@@ -138,6 +153,8 @@ fun AuctionDetailScreen(
                         viewModel.clearSuccessMessage()
                     }
                 }
+
+                Spacer(Modifier.height(16.dp))
 
                 if (auctionDetail?.imageUrl != null && auctionDetail!!.imageUrl!!.startsWith("http")) {
                     AsyncImage(
@@ -187,7 +204,6 @@ fun AuctionDetailScreen(
                 Spacer(Modifier.height(16.dp))
 
                 if (auctionDetail?.isActive == true) {
-                    // Campo para el nombre del usuario que hace la puja
                     OutlinedTextField(
                         value = userNameInput,
                         onValueChange = { userNameInput = it },
@@ -203,7 +219,7 @@ fun AuctionDetailScreen(
                             unfocusedBorderColor = Color.Transparent,
                         )
                     )
-                    Spacer(Modifier.height(16.dp)) // Espacio después del nuevo campo
+                    Spacer(Modifier.height(16.dp))
 
                     Row(
                         modifier = Modifier
@@ -262,7 +278,6 @@ fun AuctionDetailScreen(
                 }
                 Spacer(Modifier.height(24.dp))
 
-                // --- TABLA DE INSCRITOS / PUJAS ---
                 if (bidsForAuction.isNotEmpty()) {
                     Text(
                         "Pujas Registradas",
@@ -275,7 +290,6 @@ fun AuctionDetailScreen(
                             .wrapContentWidth(Alignment.CenterHorizontally)
                     )
 
-                    // Encabezados de la tabla
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -286,19 +300,18 @@ fun AuctionDetailScreen(
                     ) {
                         Text("Empleado", fontWeight = FontWeight.Bold, color = Color(0xFF333333), modifier = Modifier.weight(1.5f))
                         Text("Monto", fontWeight = FontWeight.Bold, color = Color(0xFF333333), modifier = Modifier.weight(1f))
-                        Text("", modifier = Modifier.weight(0.7f)) // Espacio para el botón Guardar
+                        Text("", modifier = Modifier.weight(0.7f))
                     }
                     Spacer(Modifier.height(8.dp))
 
-                    LazyColumn(
-                        modifier = Modifier.fillMaxWidth().height(200.dp) // Altura fija para la tabla
-                    ) {
-                        items(bidsForAuction) { bid ->
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        bidsForAuction.forEach { bid ->
                             BidItemRow(bid = bid, onUpdateBid = { bidId, newAmount ->
                                 viewModel.updateBidAmount(bidId, newAmount)
                             })
                         }
                     }
+
                 } else {
                     Text(
                         "No hay pujas registradas para esta subasta.",
@@ -334,12 +347,12 @@ fun AuctionDetailScreen(
                         Text("Eliminar", color = Color.White, fontSize = 16.sp)
                     }
                 }
+                Spacer(Modifier.height(16.dp))
             }
         }
     }
 }
 
-// Componente individual para una fila de la puja en la tabla
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BidItemRow(bid: Bid, onUpdateBid: (bidId: String, newAmount: String) -> Unit) {
@@ -368,7 +381,7 @@ fun BidItemRow(bid: Bid, onUpdateBid: (bidId: String, newAmount: String) -> Unit
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
             ),
-            textStyle = LocalTextStyle.current.copy(fontSize = 16.sp, color = Color(0xFF333333)) // Estilo para el texto
+            textStyle = LocalTextStyle.current.copy(fontSize = 16.sp, color = Color(0xFF333333))
         )
         Spacer(Modifier.width(8.dp))
         Button(
@@ -383,13 +396,12 @@ fun BidItemRow(bid: Bid, onUpdateBid: (bidId: String, newAmount: String) -> Unit
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewAuctionDetailScreen() {
     BiddingAppTheme {
         AuctionDetailScreen(
-            auctionId = "auction_test_id", // Un ID de prueba
+            auctionId = "auction_test_id",
             onBack = {}
         )
     }

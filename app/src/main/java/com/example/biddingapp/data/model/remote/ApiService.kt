@@ -1,6 +1,5 @@
 package com.example.biddingapp.data.model.remote
 
-
 import com.example.biddingapp.data.model.model.Auction
 import com.example.biddingapp.data.model.model.Bid
 import com.example.biddingapp.data.model.model.BidRequest
@@ -8,6 +7,7 @@ import com.example.biddingapp.data.model.model.BidResponse
 import com.example.biddingapp.data.model.model.BidUpdate
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -18,6 +18,9 @@ import retrofit2.http.Query
  * ApiService: Interfaz de Retrofit para definir los endpoints de la API de subastas.
  */
 interface ApiService {
+    @DELETE("auctions/{auctionId}")
+    suspend fun deleteAuction(@Path("auctionId") auctionId: String): Response<Void>
+
 
     @GET("auctions")
     suspend fun getAuctions(@Query("search") query: String? = null): Response<List<Auction>>
@@ -37,11 +40,10 @@ interface ApiService {
     @PATCH("auctions/{id}")
     suspend fun updateAuction(@Path("id") auctionId: String, @Body auctionUpdates: Auction): Response<Auction>
 
+    // --- Add this line for getBidsForAuction ---
     @GET("bids")
-    suspend fun getBidsForAuction(@Query("auction_id") auctionId: String): Response<List<Bid>>
+    suspend fun getBidsForAuction(@Query("auctionId") auctionId: String): Response<List<Bid>>
 
-    // ¡¡ENDPOINT DE ACTUALIZACIÓN DE PUJA CAMBIADO!!
-    // Ahora recibe un objeto BidUpdate
     @PATCH("bids/{id}")
-    suspend fun updateExistingBid(@Path("id") bidId: String, @Body updates: BidUpdate): Response<Bid> // <-- ¡Parámetro y tipo de retorno cambiados!
+    suspend fun updateExistingBid(@Path("id") bidId: String, @Body updates: BidUpdate): Response<Bid>
 }
